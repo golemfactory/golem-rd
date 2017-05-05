@@ -20,9 +20,9 @@ database "hyperG" as hyperG#darkkhaki
 
 ==Initialization==
 parallel
-box over Requestor:sdfsdf
+box over Requestor:capabilities_test_result
 
-box over Provider:sdfsdf
+box over Provider:capabilities_test_result
 parallel off
 
 
@@ -66,7 +66,7 @@ Requestor -> Provider: Commit acknowledgement
 
 box over Requestor:k calculated
 box over Requestor:k - minimal number of chunks\nshould be known for whole group,\ni.e., requestor and all providers
-note right of Requestor #yellow:todo:\nk wymaga przemyślenia\nk > noOfProviders\nk > noOfSubtasks
+note right of Requestor #yellow:todo:\nk needs to be limited\nk > noOfProviders\nk > noOfSubtasks
 Requestor -> Ethereum:contract(\n providers,\n noOfSubtasks,\n priceOfSingleSubtask,\n requestorDepositForTaskCalculation,\n k\n)
 
 
@@ -77,7 +77,7 @@ rbox over Ethereum: init(noOfSubtasksProvided = noOfProviders);
 
 box over Ethereum: noOfSubtasksProvided
 
-==Initialization==
+==Connection Initialization (Requestor <-> Provider)==
 
 
 
@@ -118,7 +118,7 @@ Requestor -> hyperG: download (encodedChunks.append, macs)
 
 Requestor -> Provider: give me p keys, (p < P) && (1 < p < k)
 
-note right of Requestor#yellow: todo\np musi być ograniczone\ni zależy silnie od liczby\nproviderów i subtasków
+note right of Requestor#yellow: todo\np has to be limited\np is strongly dependant from\nthe number of providers\nand the number of subtasks
 
 Provider -> Requestor: returns p keys, p_i in (key_1, ..., key_k)
 
