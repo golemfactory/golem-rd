@@ -1,1 +1,1 @@
-Open http://sequencediagram.org and paste the content of `dagram.txt`. 
+Open http://sequencediagram.org and paste the content of `diagram.txt`. 
