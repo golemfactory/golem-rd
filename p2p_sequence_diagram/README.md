@@ -1,1 +1,0 @@
-Open http://sequencediagram.org and paste the content of `diagram.txt`. 
