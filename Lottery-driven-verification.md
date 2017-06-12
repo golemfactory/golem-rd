@@ -119,7 +119,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
 
 3.  Q: Why R can't assign and order subtasks himself or set winning tickets/duplicates himself??
 
-    A: He could deal winning subtasks to his P*. It needs to be random and not manipulable. At the same time, R needs to know winning tickets to calculate these subtasks himself
+    A: He could deal winning subtasks to his P\*. It needs to be random and not manipulable. At the same time, R needs to know winning tickets to calculate these subtasks himself
 
 4.  Q: Why is the KDFreveal/payout done in all-at-once fashion?
 
@@ -133,9 +133,9 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
 
     A: less than X%. If he get's caught, all his results are rejected, not only the bad ones. X%-cheat strategy breaks even at verification of 1 subtask (!). If >1 subtask is verified, cheating is inferior to cooperation
   
-6.  Q: R might reject the P's with winning ticket subtasks to maneouver these winning tickets into R's colluding P*'s pocket
+6.  Q: R might reject the P's with winning ticket subtasks to maneouver these winning tickets into R's colluding P\*'s pocket
 
-    A: 1) might end up having only P* deliver results, i.e. R calculates the task himself. Probability that there's substantial amount of never-winning, working Ps is low
+    A: 1) might end up having only P\* deliver results, i.e. R calculates the task himself. Probability that there's substantial amount of never-winning, working Ps is low
        3) working Ps will check the grounds of rejection. Unjust rejection would make them stop contributing
        4) with huge damage to R's reputation
 
@@ -149,7 +149,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
 
     A: P1 won't do that, as its better to just commit to correct task and do the more expensive work. Besides that better paid work might be also more difficult, so it requires some involvment on behalf of P1 first.
     
-9.  Q: R retries task creation many times until his P*s get the winning tickets without having to do much work
+9.  Q: R retries task creation many times until his P\*s get the winning tickets without having to do much work
 
     A: spends gas on Task broadcasts, wastes GNT deposited for payout+cushion
 
@@ -161,25 +161,25 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
     TODO: Does this need to be forced on R?
         - 3 options: R is free to choose, R _must_ verify winning-tickets (favourite), R _must_ verify _only_ winning-tickets
         
-11. Q: Why doesn't R reveal his `lottery_secret`? He could sell this knowledge to P*, allowing P* to optimize his payout unfairly
+11. Q: Why doesn't R reveal his `lottery_secret`? He could sell this knowledge to P\*, allowing P\* to optimize his payout unfairly
     
     A: that would render R's assurance of correctness void.
     
     TODO: not 100% sure about this, rethink! In case it's not enough guarantee, revealing the `lottery_secret` might slash the R's deposit
     
-    See also Known Problems, this is sever if P*'s are R's Sybil identities
+    See also Known Problems, this is sever if P\*'s are R's Sybil identities
 
 12. Q: Why can't only winning ticket subtasks by assigned randomly to Providers, and the rest of assignment be R-driven
     
-    A: R would then assign _easiest_ tasks to colluding P*. Assignment randomness has its own merit
+    A: R would then assign _easiest_ tasks to colluding P\*. Assignment randomness has its own merit
     
 14. Q: doesn't the protocol rely too much on the Reputation system?
 
     A: The reputation system is mentioned in the protocol, it is however auxiliary to the security mechanisms. The execution of the protocol provides a data feed for the rep system to base on, because it makes a trace of rejected computations be left behind
     
-15. Q: What if some P*s collude and request price bumping at the end of tasks lifetime, taking results hostage?
+15. Q: What if some P\*s collude and request price bumping at the end of tasks lifetime, taking results hostage?
 
-    A: Taking results hostage can happen always anyway. In this approach P*s risk their work being expropriated and given to other nodes. Also opportunity to request bumping is limited.
+    A: Taking results hostage can happen always anyway. In this approach P\*s risk their work being expropriated and given to other nodes. Also opportunity to request bumping is limited.
     
 16. Q: Can't price-based P-rejection be used to maneouver winning tickets into R's hands?
 
@@ -191,8 +191,8 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
     
 ### Known problems
 
-1. R can put some own P\*s on his task, and only make them deliver anything if P\* gets an excesive amount of winning-tickets. These winning-tickets should appear on the front of P* assigned subtasks to be cheap to reach. When successful, this optimizes R's cost unfairly, as non-colluding Ps get less than expected in the long run. This is an open threat, but:
-    - on large scale this requires an army of P* Sybil identities, with effective anti-sybil protection it would be hard to pull off
+1. R can put some own P\*s on his task, and only make them deliver anything if P\* gets an excesive amount of winning-tickets. These winning-tickets should appear on the front of P\* assigned subtasks to be cheap to reach. When successful, this optimizes R's cost unfairly, as non-colluding Ps get less than expected in the long run. This is an open threat, but:
+    - on large scale this requires an army of P\* Sybil identities, with effective anti-sybil protection it would be hard to pull off
     - those winning-tickets were also a correctness guarantee. If R deals winning-tickets to himself, he loses assurance. Argument applies only if "R _must_ verify _only_ winning-tickets"
     - mitigation1: 2-tiered lottery, Requestor knows only tier-1 (verified tasks). From within tier-1 tickets, paying tickets are drawn without R's knowledge
     - mitigation2: winning-tickets become known to R & verification starts after all (50%? 75%?) tasks are completed, after the laggards had been dropped
