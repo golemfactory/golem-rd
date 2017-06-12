@@ -73,7 +73,7 @@ This encourages Ps to send their notifications ASAP and make their best effort t
 
 This is a slightly modified flow from the previous "Remaining work reshuffling" doc.
 
-4. Initial assignment of subtasks is done like this: `assignment_seed` shuffles the subtasks by determining the assignment matrix `M1`, which assigns equal count of subtasks to `P1`, ..., `Pn` (**NOTE** order matters!), e.g.:
+1. Initial assignment of subtasks is done like this: `assignment_seed` shuffles the subtasks by determining the assignment matrix `M1`, which assigns equal count of subtasks to `P1`, ..., `Pn` (**NOTE** order matters!), e.g.:
 
     |           | P1 | P2 | P3 | P4 |
     |-----------|----|----|----|----|
@@ -113,43 +113,43 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
     
 ## Q&A
 
-2. Q: Why R needs to reveal his solution of rejecting duplicate?
+1.  Q: Why R needs to reveal his solution of a rejected duplicate subtask?
 
-  A: Other participants can then recalculate the subtask. Knowing who was "right" in the dispute, they apply that to their reputation system. E.g. if R's rejection is unjust, R's reputation suffers
+    A: Other participants can then recalculate the subtask. Knowing who was "right" in the dispute, they apply that to their reputation system. E.g. if R's rejection is unjust, R's reputation suffers
 
-3. Q: Why R can't assign and order subtasks himself or set winning tickets/duplicates himself??
+3.  Q: Why R can't assign and order subtasks himself or set winning tickets/duplicates himself??
 
-  A: He could deal winning subtasks to his P*. It needs to be random and not manipulable. At the same time, R needs to know winning tickets to calculate these subtasks himself
+    A: He could deal winning subtasks to his P*. It needs to be random and not manipulable. At the same time, R needs to know winning tickets to calculate these subtasks himself
 
-4. Q: Why is the KDFreveal/payout done in all-at-once fashion?
+4.  Q: Why is the KDFreveal/payout done in all-at-once fashion?
 
-  A: In order to get non-winning results, R must pay the winning ones. This requirement guarantees that.
+    A: In order to get non-winning results, R must pay the winning ones. This requirement guarantees that.
 
-5. Q: Some Provider P delivers X% bad results, what then?
+5.  Q: Some Provider P delivers X% bad results, what then?
 
     A: Doing X% bad work doesn't increase payout, only jeopardizes P's (100-X)% good results. Other words: giving extra bad results doesn't increase payout, it only increases chance of getting controlled
     
-5. Q: In particluar, what if only P1 signs up for a task. P1 can then only calculate X% right and get X% of payout on average
+5.  Q: In particluar, what if only P1 signs up for a task. P1 can then only calculate X% right and get X% of payout on average
 
-  A: less than X%. If he get's caught, all his results are rejected, not only the bad ones. X%-cheat strategy breaks even at verification of 1 subtask (!). If >1 subtask is verified, cheating is inferior to cooperation
+    A: less than X%. If he get's caught, all his results are rejected, not only the bad ones. X%-cheat strategy breaks even at verification of 1 subtask (!). If >1 subtask is verified, cheating is inferior to cooperation
   
-6. Q: R might reject the P's with winning ticket subtasks to maneouver these winning tickets into R's colluding P*'s pocket
+6.  Q: R might reject the P's with winning ticket subtasks to maneouver these winning tickets into R's colluding P*'s pocket
 
     A: 1) might end up having only P* deliver results, i.e. R calculates the task himself. Probability that there's substantial amount of never-winning, working Ps is low
        3) working Ps will check the grounds of rejection. Unjust rejection would make them stop contributing
        4) with huge damage to R's reputation
 
-7. Q: Why rejected winning tickets can go to already commited-to tasks?
+7.  Q: Why rejected winning tickets can go to already commited-to tasks?
 
     A: 1) to have the chance of winning distributed uniformly across subtasks, regardless of subtask's history
        2) to provide a small incentive for Providers to check their peers (ones they suspect are cheating) and report to R. Such Provider-driven redundancy is incentivized by chances of getting extra winning-tickets
        3) to prevent R from maneouvering winning tickets to R's pocket
 
-8. Q: P1 (or his Sybils) might push bad results to hasten overal solution, when better paid work is to be done
+8.  Q: P1 (or his Sybils) might push bad results to hasten overal solution, when better paid work is to be done
 
     A: P1 won't do that, as its better to just commit to correct task and do the more expensive work. Besides that better paid work might be also more difficult, so it requires some involvment on behalf of P1 first.
     
-9. Q: R retries task creation many times until his P*s get the winning tickets without having to do much work
+9.  Q: R retries task creation many times until his P*s get the winning tickets without having to do much work
 
     A: spends gas on Task broadcasts, wastes GNT deposited for payout+cushion
 
@@ -157,16 +157,21 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
 
     A: Suppose lottery functions normally, but R picks verified subtasks himself - what breaks then?
     Then P1 can get paid for doing no work. The winning ticket subtasks is the narrowest set of subtasks R needs to verify to guarantee "0 payout for junk" rule
+    
     TODO: Does this need to be forced on R?
         - 3 options: R is free to choose, R _must_ verify winning-tickets (favourite), R _must_ verify _only_ winning-tickets
         
 11. Q: Why doesn't R reveal his `lottery_secret`? He could sell this knowledge to P*, allowing P* to optimize his payout unfairly
+    
     A: that would render R's assurance of correctness void.
+    
     TODO: not 100% sure about this, rethink! In case it's not enough guarantee, revealing the `lottery_secret` might slash the R's deposit
+    
     See also Known Problems, this is sever if P*'s are R's Sybil identities
 
 12. Q: Why can't only winning ticket subtasks by assigned randomly to Providers, and the rest of assignment be R-driven
-    - R would then assign _easiest_ tasks to colluding P*. Assignment randomness has its own merit
+    
+    A: R would then assign _easiest_ tasks to colluding P*. Assignment randomness has its own merit
     
 14. Q: doesn't the protocol rely too much on the Reputation system?
 
@@ -186,7 +191,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
     
 ### Known problems
 
-1. R can put some own P*s on his task, and only make them deliver anything if P* gets an excesive amount of winning-tickets. These winning-tickets should appear on the front of P* assigned subtasks to be cheap to reach. When successful, this optimizes R's cost unfairly, as non-colluding Ps get less than expected in the long run. This is an open threat, but:
+1. R can put some own P\*s on his task, and only make them deliver anything if P\* gets an excesive amount of winning-tickets. These winning-tickets should appear on the front of P* assigned subtasks to be cheap to reach. When successful, this optimizes R's cost unfairly, as non-colluding Ps get less than expected in the long run. This is an open threat, but:
     - on large scale this requires an army of P* Sybil identities, with effective anti-sybil protection it would be hard to pull off
     - those winning-tickets were also a correctness guarantee. If R deals winning-tickets to himself, he loses assurance. Argument applies only if "R _must_ verify _only_ winning-tickets"
     - mitigation1: 2-tiered lottery, Requestor knows only tier-1 (verified tasks). From within tier-1 tickets, paying tickets are drawn without R's knowledge
