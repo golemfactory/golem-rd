@@ -1,5 +1,10 @@
 # Remaining work reshuffling
 
+**WARNING** - this write-up is partially out-of-date.
+This mechanism doesn't securely provide a price-setting mechanism.
+The reshuffling mechanism itself is re-stated in other docs.
+**TO BE REMOVED**
+
 We propose an extension of the scheme outlined in [[Work amount measurement by fair sampling ex ante]], where providers beat each other in a race to be assigned new subtasks.
 The problem identified in this scheme is that it enables attacks, as requestor has final say on which provider is dealt which subtask - even if the task ordering is randomly predetermined and committed to. 
 Previously suggested mitigation was to apply BFT replicated state which prohibits manipulating of the assignment of the subtasks, e.g. requestor and providers forming a disposable, ad-hoc Tendermint network. 
