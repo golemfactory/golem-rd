@@ -2,6 +2,9 @@
 
 **Summary** The idea of lotteries on Ethereum as desribed [here](http://www.golemproject.net/doc/GolemNanopayments.pdf) is reused with a different purpose.
 Instead of aiming to cut gas cost related to payments, it is used to simplify validation and strengthen the guarantees of Provider's work being correct.
+**Lottery-driven verification** means that some random subset of subtasks are "winning tickets", which entitle their Provider to portion of Task's payout, and those subtasks are redundantly calculated by the Requestor.
+A winning-ticket subtask is paid for, only if the result is the same as Requestor's.
+There's no Provider-Provider redundancy forced, i.e. no two Providers are assigned the same subtask.
 
 This builds on previous results: [lotteries](http://www.golemproject.net/doc/GolemNanopayments.pdf), [atomic swap](https://github.com/imapp-pl/golem_rd/wiki/Atomic-swap) and remaining work reshuffling.
 
@@ -39,9 +42,9 @@ Also note there are [ideas](https://github.com/imapp-pl/golem_rd/wiki/Collusion-
 
 This is the general flow of the happy path, see below for handling of unhappy paths
 
-1. R publishes task, along with commitment to division into subtasks, initial price and number of winning tickets
+1. R (Requestor) publishes task, along with commitment to division into subtasks, initial price and number of winning tickets
 2. R provides `sha3(lottery_secret)` and provides timelocked GNT for payout+cushion
-3. Providers list is compiled
+3. Ps (Providers) list is compiled
 4. `lottery_seed = sha3(lottery_secret | future_blockhash)`, determines lottery winners. When future block is mined, Requestor knows the winning tickets
 5. `assignment_seed = sha3(sha3(lottery_secret) | future_blockhash)` determines assignment of subtasks
 7. R calculates results of S1, S2, ... lottery winning subtasks
@@ -195,7 +198,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
     - on large scale this requires an army of P\* Sybil identities, with effective anti-sybil protection it would be hard to pull off
     - those winning-tickets were also a correctness guarantee. If R deals winning-tickets to himself, he loses assurance. Argument applies only if "R _must_ verify _only_ winning-tickets"
     - mitigation1: 2-tiered lottery, Requestor knows only tier-1 (verified tasks). From within tier-1 tickets, paying tickets are drawn without R's knowledge
-    - mitigation2: winning-tickets become known to R & verification starts after all (50%? 75%?) tasks are completed, after the laggards had been dropped
+    - mitigation2: winning-tickets become known to R and verification starts after all (50%? 75%?) tasks are completed, after the laggards had been dropped
     
     
     
