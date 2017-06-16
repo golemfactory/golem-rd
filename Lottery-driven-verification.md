@@ -148,9 +148,9 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
        2) to provide a small incentive for Providers to check their peers (ones they suspect are cheating) and report to R. Such Provider-driven redundancy is incentivized by chances of getting extra winning-tickets
        3) to prevent R from maneouvering winning tickets to R's pocket
 
-8.  Q: P1 (or his Sybils) might push bad results to hasten overal solution, when better paid work is to be done
+8.  Q: P1 might push bad results to hasten overal solution, when better paid work is to be done
 
-    A: P1 won't do that, as its better to just commit to correct task and do the more expensive work. Besides that better paid work might be also more difficult, so it requires some involvment on behalf of P1 first.
+    A: P1 won't do that, as its better to just commit to correct task and do the more expensive work. Besides that better paid work might be also more difficult, so it requires some involvment on behalf of P1 first. However there's a more serious problem listed in Known Problems ("Opportunistic P-Sybils")
     
 9.  Q: R retries task creation many times until his P\*s get the winning tickets without having to do much work
 
@@ -192,17 +192,29 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
 
     A: There would need to be a mechanism allowing R to connect to a slave Golem node fully in R's control. Bit similar to a "full node & light client" interaction
     
+18. Q: Non-deterministic results of subtasks
+
+    A: that undermines a lot of verification mechanisms considered. However R doing the only redundant work is actually _helping_ in non-deterministic setting. With some modifications, the protocol could allow R to check a subtask's result differently than by-hash (by some metric of plain-text image), as he has the final say on correct-incorrect.
+    
 ### Known problems
 
-1. R can put some own P\*s on his task, and only make them deliver anything if P\* gets an excesive amount of winning-tickets. These winning-tickets should appear on the front of P\* assigned subtasks to be cheap to reach. When successful, this optimizes R's cost unfairly, as non-colluding Ps get less than expected in the long run. This is an open threat, but:
-    - on large scale this requires an army of P\* Sybil identities, with effective anti-sybil protection it would be hard to pull off
-    - those winning-tickets were also a correctness guarantee. If R deals winning-tickets to himself, he loses assurance. Argument applies only if "R _must_ verify _only_ winning-tickets"
+1.  R can put some own P\*s on his task and have them _never calculate anything_, but commit to some fake hashes and grab the winning tickets, if P\*s get a lot of them. It may turn out, that all winning tickets go to P\*s (hence back to R), and none to working Ps. Then R resubmits the part of the Task which was not calculated as a new Task2. This strategy has better expected return for R, if only Task submitting and Sybil identities are relatively cheap.
+    
     - mitigation1: 2-tiered lottery, Requestor knows only tier-1 (verified tasks). From within tier-1 tickets, paying tickets are drawn without R's knowledge
-    - mitigation2: winning-tickets become known to R and verification starts after all (50%? 75%?) tasks are completed, after the laggards had been dropped
+    - mitigation2: winning-tickets become known to R and verification starts after all (50%? 75%?) tasks are completed. Subtask assignment must be adapted to performance Ps committed to, i.e. If P1 calculated 20% of subtasks, P1 gets 20% of remaining work after winning-tickets have become known.
     
+      - only "100%" option makes the strategy non-winning entirely, "50%" gives small relief
+      - this complicates flow greatly
     
+2.  **Opportunistic P-Sybils**. P1 puts his Sybil identities P* on a Task. P1 provides good results, P* push empty results cheaply. If they are caught, P1 get's some more work to do. If P1 gets the winning-ticket, P1 runs away with payout leaving R with bad results.
+
+    - unfortunately this leaves P1 better off (winning strategy for all Providers)
     
-    
+3.  The lottery itself. For smaller Providers, probability of "no reward until bored" might be too high. For instance, `P(P1, after 10 tasks with 1 winning ticket among 1000 subtasks and being able to compute 1 subtask per task, gets zero reward) = 0.99`. That probability drops to still scary 0.37 after having participated in 1000 (!) tasks like so, which may take a year, assuming reasonably difficult subtasks.
+
+4.  The claim that this protocol leaves an auditable trace of unjust rejections and cheating Providers is weak. It would need to rely on the Task's payload being available long-term. That would need to be taken care of by the just party, as proof of being just. That might be difficult
+
+
     
     
     
