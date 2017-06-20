@@ -1,6 +1,6 @@
 # Lottery-driven verification
 
-**Summary** The idea of lotteries on Ethereum as desribed [here](http://www.golemproject.net/doc/GolemNanopayments.pdf) is reused with a different purpose.
+**Summary** The idea of lotteries on Ethereum as described [here](http://www.golemproject.net/doc/GolemNanopayments.pdf) is reused with a different purpose.
 Instead of aiming to cut gas cost related to payments, it is used to simplify validation and strengthen the guarantees of Provider's work being correct.
 **Lottery-driven verification** means that some random subset of subtasks are "winning tickets", which entitle their Provider to portion of Task's payout, and those subtasks are redundantly calculated by the Requestor.
 A winning-ticket subtask is paid for, only if the result is the same as Requestor's.
@@ -132,23 +132,23 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
 
     A: Doing X% bad work doesn't increase payout, only jeopardizes P's (100-X)% good results. Other words: giving extra bad results doesn't increase payout, it only increases chance of getting controlled
     
-5.  Q: In particluar, what if only P1 signs up for a task. P1 can then only calculate X% right and get X% of payout on average
+5.  Q: In particular, what if only P1 signs up for a task. P1 can then only calculate X% right and get X% of payout on average
 
     A: less than X%. If he get's caught, all his results are rejected, not only the bad ones. X%-cheat strategy breaks even at verification of 1 subtask (!). If >1 subtask is verified, cheating is inferior to cooperation
   
-6.  Q: R might reject the P's with winning ticket subtasks to maneouver these winning tickets into R's colluding P\*'s pocket
+6.  Q: R might reject the P's with winning ticket subtasks to maneuver these winning tickets into R's colluding P\*'s pocket
 
     A: 1) might end up having only P\* deliver results, i.e. R calculates the task himself. Probability that there's substantial amount of never-winning, working Ps is low
        3) working Ps will check the grounds of rejection. Unjust rejection would make them stop contributing
        4) with huge damage to R's reputation
 
-7.  Q: Why rejected winning tickets can go to already commited-to tasks?
+7.  Q: Why rejected winning tickets can go to already committed-to tasks?
 
     A: 1) to have the chance of winning distributed uniformly across subtasks, regardless of subtask's history
        2) to provide a small incentive for Providers to check their peers (ones they suspect are cheating) and report to R. Such Provider-driven redundancy is incentivized by chances of getting extra winning-tickets
-       3) to prevent R from maneouvering winning tickets to R's pocket
+       3) to prevent R from maneuvering winning tickets to R's pocket
 
-8.  Q: P1 might push bad results to hasten overal solution, when better paid work is to be done
+8.  Q: P1 might push bad results to hasten overall solution, when better paid work is to be done
 
     A: P1 won't do that, as its better to just commit to correct task and do the more expensive work. Besides that better paid work might be also more difficult, so it requires some involvment on behalf of P1 first. However there's a more serious problem listed in Known Problems ("Opportunistic P-Sybils")
     
@@ -162,7 +162,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
     Then P1 can get paid for doing no work. The winning ticket subtasks is the narrowest set of subtasks R needs to verify to guarantee "0 payout for junk" rule
     
     TODO: Does this need to be forced on R?
-        - 3 options: R is free to choose, R _must_ verify winning-tickets (favourite), R _must_ verify _only_ winning-tickets
+        - 3 options: R is free to choose, R _must_ verify winning-tickets (favorite), R _must_ verify _only_ winning-tickets
         
 11. Q: Why doesn't R reveal his `lottery_secret`? He could sell this knowledge to P\*, allowing P\* to optimize his payout unfairly
     
@@ -170,7 +170,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
     
     TODO: not 100% sure about this, rethink! In case it's not enough guarantee, revealing the `lottery_secret` might slash the R's deposit
     
-    See also Known Problems, this is sever if P\*'s are R's Sybil identities
+    See also Known Problems, this is severe if P\*'s are R's Sybil identities
 
 12. Q: Why can't only winning ticket subtasks by assigned randomly to Providers, and the rest of assignment be R-driven
     
@@ -184,7 +184,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
 
     A: Taking results hostage can happen always anyway. In this approach P\*s risk their work being expropriated and given to other nodes. Also opportunity to request bumping is limited.
     
-16. Q: Can't price-based P-rejection be used to maneouver winning tickets into R's hands?
+16. Q: Can't price-based P-rejection be used to maneuver winning tickets into R's hands?
 
     A: No, Requestor needs to prove P's price offer was higher than the new price threshold set after bumping. All P's over the threshold are dropped
 
@@ -206,10 +206,10 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
       - only "100%" option makes the strategy non-winning entirely, "50%" gives small relief
       - this complicates flow greatly
     
-2.  **Opportunistic P-Sybils**. P1 puts his Sybil identities P* on a Task. P1 provides good results, P* push empty results cheaply. If they are caught, P1 get's some more work to do. If P1 gets the winning-ticket, P1 runs away with payout leaving R with bad results.
+2.  **Opportunistic P-Sybils**. P1 puts his Sybil identities P* on a Task. P1 provides good results, P* push empty results cheaply. If they are caught, P1 gets some more work to do. If P1 gets the winning-ticket, P1 runs away with payout leaving R with bad results.
 
     - unfortunately this leaves P1 better off (winning strategy for all Providers)
-    - LG: I don't think so. Calculate probabilities carefully. Firstly the situation with Provider P1 having his sybil P*, which provides empty results, is equivalent to a situation when P* is a malicious Provider, which provides empty results, that is not connected to P1. The procedure is the same in both situations. It is symmetric for all calculating Providers. Secondly we can formally calculate expected values. We do it with assumption that there is one winnig ticket for simplicity. Let E denotes expected value, S1 denotes number of subtasks calculated by P1 in the first phase, S* denotes number of subtasks calculated by P* in the first phase, S1' denotes number of subtasks calculated by P1 in the second phase (when P* has a winning ticket in the first phase and other Providers have to calculate his subtasks in the second phase), A denotes event that P* has a winning ticket in the first phase, AC denotes the complementary event of A, P denotes probability, X denotes random variable: 0 - P1 loses, 1 - P1 wins. 
+    - LG: I don't think so. Calculate probabilities carefully. Firstly the situation with Provider P1 having his sybil P*, which provides empty results, is equivalent to a situation when P* is a malicious Provider, which provides empty results, that is not connected to P1. The procedure is the same in both situations. It is symmetric for all calculating Providers. Secondly we can formally calculate expected values. We do it with assumption that there is one winning ticket for simplicity. Let E denotes expected value, S1 denotes number of subtasks calculated by P1 in the first phase, S* denotes number of subtasks calculated by P* in the first phase, S1' denotes number of subtasks calculated by P1 in the second phase (when P* has a winning ticket in the first phase and other Providers have to calculate his subtasks in the second phase), A denotes event that P* has a winning ticket in the first phase, AC denotes the complementary event of A, P denotes probability, X denotes random variable: 0 - P1 loses, 1 - P1 wins. 
     
     ![alt text](https://latex.codecogs.com/gif.latex?E\left(\frac{X}{\text{number&space;of&space;subtasks&space;calculated&space;by&space;P1}}\right)=\\&space;E\left(\frac{X}{S1}&space;\Big{|}&space;A^C\right)\cdot&space;P(A^C)&plus;E\left(\frac{X}{S1&plus;S1'}&space;\Big{|}&space;A\right)\cdot&space;P(A)=\\&space;\frac{S1}{N-S*}\cdot&space;\frac{1}{S1}\cdot&space;\frac{N-S*}{N}&plus;\frac{S1&plus;S1'}{N-S*}\cdot\frac{1}{S1&plus;S1'}\cdot\frac{S*}{N}=\\&space;\frac{1}{N}&plus;\frac{1}{N}\cdot\frac{S*}{N-S*}=\frac{1}{N}\cdot\left(1&plus;\frac{S*}{N-S*}\right)=\frac{1}{N}\cdot\frac{N}{N-S*}=\\&space;\frac{1}{N-S*})
     
