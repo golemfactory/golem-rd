@@ -30,13 +30,12 @@ Also note there are [ideas](https://github.com/imapp-pl/golem_rd/wiki/Collusion-
 
 ## Key points
 
-1. Provider never gets paid for bad work: Provider that does 100% incorrect work (delivers junk), has 100% chance of getting 0 reward
-1. Provider that does 100% correct work, still gets his expected payout in the long run
-1. Adding junk into a batch of correct results never increases the expected payout
+1. Assuming no Sybil attack, Provider never gets paid for bad work: Provider that does 100% incorrect work (delivers junk), has 100% chance of getting 0 reward
+1. Assuming no Sybil attack, Provider that does 100% correct work, still gets his expected payout in the long run
 2. The only redundancy that works from the Requestor's perspective, is the redundancy done by the Reguestor
 3. All agents are selfish and rational, i.e. they seek to optimize their net gain.
 
-   for now assume no agent want's to *spend* to hurt the network (no grieving)
+   for now assume no agent wants to *spend* to hurt the network (no griefing)
 
 ## Flow
 
@@ -138,13 +137,15 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
   
 6.  Q: R might reject the P's with winning ticket subtasks to maneuver these winning tickets into R's colluding P\*'s pocket
 
-    A: 1) might end up having only P\* deliver results, i.e. R calculates the task himself. Probability that there's substantial amount of never-winning, working Ps is low
+    A: 
+       1) might end up having only P\* deliver results, i.e. R calculates the task himself. Probability that there's substantial amount of never-winning, working Ps is low
        3) working Ps will check the grounds of rejection. Unjust rejection would make them stop contributing
        4) with huge damage to R's reputation
 
 7.  Q: Why rejected winning tickets can go to already committed-to tasks?
 
-    A: 1) to have the chance of winning distributed uniformly across subtasks, regardless of subtask's history
+    A: 
+       1) to have the chance of winning distributed uniformly across subtasks, regardless of subtask's history
        2) to provide a small incentive for Providers to check their peers (ones they suspect are cheating) and report to R. Such Provider-driven redundancy is incentivized by chances of getting extra winning-tickets
        3) to prevent R from maneuvering winning tickets to R's pocket
 
