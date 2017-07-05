@@ -55,7 +55,6 @@ Risks for Providers:
     - consider market properties of the price-bumping mechainsm - is it exploitable? is it practical enough?
     - careful random number generator considerations
 2. Subtask assignment and reshuffling might prove to be to unwieldy to be handled properly and cheaply enough. This might require introducing of some additional BFT mechanism (like e.g. deployment of an ad-hoc Tendermint sidechain for single Task execution).
-3. Protocol is exploitable if Sybil identities are cheap
 
 ## Extensibility
 
