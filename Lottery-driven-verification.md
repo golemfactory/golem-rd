@@ -105,7 +105,7 @@ If after first challenged `P1`, ..., `P4` published the results for 1, 4, 1, 2 o
     |           | P1 | P2 | P3 | P4 |
     |-----------|----|----|----|----|
     | subtasks: | 7  | 5  | 16 | 2  |
-    |           | 3  | 10 | 3  | 13 |
+    |           | 3  | 10 | 14 | 13 |
 
     Eight subtasks carried on to round 2, reshuffled and distributed uniformly.
 
