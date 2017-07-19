@@ -61,12 +61,14 @@ From a more general perspective, consider 2 strategies for P1:
   
 The gain from employing the "cheating" strategy compared to the "honest" one, for a single Task is (derivation skipped):
 
-![alt text](https://latex.codecogs.com/gif.latex?E(\text{payout}|\text{cheating})-E(\text{payout}|\text{honest})=2\cdot\frac{P_{pow}}{T_{pow}}\frac{(K_T-1)(K-K_T)}{(K-1)(K-2)}\cdot&space;C\cdot\frac{K_T-1}{K_T^2})
+![alt text](https://latex.codecogs.com/gif.latex?E(\text{payout}|\text{cheating})-E(\text{payout}|\text{honest})=)
+
+![alt text](https://latex.codecogs.com/gif.latex?=2\cdot\frac{P_{pow}}{T_{pow}}\frac{(K_T-1)(K-K_T)}{(K-1)(K-2)}\cdot&space;C\cdot\frac{K_T-1}{K_T^2})
 
 Intuitively, this value is maxed out for some proportion of ![alt text](https://latex.codecogs.com/gif.latex?K_T) within ![alt text](https://latex.codecogs.com/gif.latex?K), and generally decreases with ![alt text](https://latex.codecogs.com/gif.latex?K) increasing. 
 The more Providers apply for a single Task, the better.
 
-An example value of such gain is $0.0015 for a Task costing $1 to compute, assuming P1 has 10% of compute power and his 2 Sybils are one of 100 Providers applying ![alt text](https://latex.codecogs.com/gif.latex?K) for a 10-Provider ![alt text](https://latex.codecogs.com/gif.latex?K_T=10)) Task.
+An example value of such gain is $0.0015 for a Task costing $1 to compute, assuming P1 has 10% of compute power and his 2 Sybils are one of 100 Providers applying (![alt text](https://latex.codecogs.com/gif.latex?K=100)) for a 10-Provider (![alt text](https://latex.codecogs.com/gif.latex?K_T=10)) Task.
 
 Other
 1. Task might take long to compute or fail entirely due to uncertanities in difficulty/pricing
