@@ -207,14 +207,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
       - only "100%" option makes the strategy non-winning entirely, "50%" gives small relief
       - this complicates flow greatly
     
-2.  **Opportunistic P-Sybils**. P1 puts his Sybil identities P\* on a Task. P1 provides good results, P\* push empty results cheaply. If they are caught, P1 gets some more work to do. If P1 gets the winning-ticket, P1 runs away with payout leaving R with bad results.
-
-    - unfortunately this leaves P1 better off (winning strategy for all Providers)
-    - With P\* being there the expected reward per subtask is raised from `1/N` to `N+S*/N²`, where `N` - number of subtask, `S*` number of empty results and there's a single winning ticket. Calculated as follows: 
-    
-    LG: Firstly the situation with Provider P1 having his sybil P\*, which provides empty results, is equivalent to a situation when P\* is a malicious Provider, which provides empty results, that is not connected to P1. The procedure is the same in both situations. It is symmetric for all calculating Providers. Secondly we can formally calculate expected values. We do it with assumption that there is one winning ticket for simplicity. Let E denotes expected value, S1 denotes number of subtasks calculated by P1 in the first phase, S\* denotes number of subtasks calculated by P\* in the first phase, S1' denotes number of subtasks calculated by P1 in the second phase (when P\* has a winning ticket in the first phase and other Providers have to calculate his subtasks in the second phase), A denotes event that P\* has a winning ticket in the first phase, AC denotes the complementary event of A, P denotes probability, X denotes random variable: 0 - P1 loses, 1 - P1 wins. 
-    
-    ![alt text](https://latex.codecogs.com/gif.latex?E\left(\frac{X}{\text{number&space;of&space;subtasks&space;calculated&space;by&space;P1}}\right)=\\&space;E\left(\frac{X}{S1}&space;\Big{|}&space;A^C\right)\cdot&space;P(A^C)&plus;E\left(\frac{X}{S1&plus;S1'}&space;\Big{|}&space;A\right)\cdot&space;P(A)=\\&space;\frac{S1}{N-S*}\cdot&space;\frac{1}{S1}\cdot&space;\frac{N-S*}{N}&plus;\frac{S1&plus;S1'}{N}\cdot\frac{1}{S1&plus;S1'}\cdot\frac{S*}{N}=\\&space;\frac{1}{N}&plus;\frac{1}{N}\cdot\frac{S*}{N}=\frac{N+S*}{N^2})
+2.  **Opportunistic P-Sybils**. See [here](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#Opportunistic-Sybils-of-P)
     
 3.  The lottery itself. For smaller Providers, probability of "no reward until bored" might be too high. For instance, `P(P1, after 10 tasks with 1 winning ticket among 1000 subtasks and being able to compute 1 subtask per task, gets zero reward) = 0.99`. That probability drops to still scary 0.37 after having participated in 1000 (!) tasks like so, which may take a year, assuming reasonably difficult subtasks.
 
