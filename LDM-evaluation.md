@@ -70,17 +70,34 @@ The more Providers apply for a single Task, the better.
 
 An example value of such gain is $0.0015 for a Task costing $1 to compute, assuming P1 has 10% of compute power and his 2 Sybils are one of 100 Providers applying (![alt text](https://latex.codecogs.com/gif.latex?K=100)) for a 10-Provider (![alt text](https://latex.codecogs.com/gif.latex?K_T=10)) Task.
 
-Other
-1. Task might take long to compute or fail entirely due to uncertanities in difficulty/pricing
-3. Random number generator might be too lame to provide honest lotteries and subtask assignment
-4. Requestor risks having undetected incorrect results introduced by **malicious** Provider (griefing)
+#### Difficulty vs pricing
+
+**Task might take long to compute or fail entirely due to uncertanities in difficulty/pricing**
+
+#### RNG
+
+**Random number generator might be too lame to provide honest lotteries and subtask assignment**
+
+#### Griefing by incorrect results
+
+**Requestor risks having undetected incorrect results introduced by **malicious** Provider (griefing)**
 
 ### Risks for Providers:
 
-1. "no reward till bored" is probable for small providers
-1. Adding Sybil (Provider) addresses to a Task allows **Requestor** to be charged for computation less than what honest Providers expect
-3. Provider risks sacrificing some work for sake of determining Task difficulty and pricing
-4. Provider risks being dropped and his work rejected by **malicious** Requestor reporting an incorrect result unjustly (griefing)
+#### No reward till bored
+
+
+#### Opportunistic P-Sybils of R
+
+**Adding Sybil (Provider) addresses to a Task allows **Requestor** to be charged for computation less than what honest Providers expect**
+
+#### Wasted effort for pricing
+
+**Provider risks sacrificing some work for sake of determining Task difficulty and pricing**
+
+#### Griefing by unjust rejection
+
+**Provider risks being dropped and his work rejected by **malicious** Requestor reporting an incorrect result unjustly (griefing)**
 
 ## External constraints and implications
 
