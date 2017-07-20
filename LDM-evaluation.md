@@ -96,7 +96,7 @@ Let's model this dissapointment using the two critical values:
 
 ![alt text](https://latex.codecogs.com/gif.latex?top_2) - if less than 90% expected income for Provider within that time, Provider is dissapointed with Golem
 
-Additionally define: ![alt text](https://latex.codecogs.com/gif.latex?T) - time it takes to calculate the Task, ![alt text](https://latex.codecogs.com/gif.latex?F(n,p,k) - CDF of ![alt text](https://latex.codecogs.com/gif.latex?Binomial(n,p), i.e. probability that at most ![alt text](https://latex.codecogs.com/gif.latex?k) out of ![alt text](https://latex.codecogs.com/gif.latex?n) succeed, with probability of single success ![alt text](https://latex.codecogs.com/gif.latex?p).
+Additionally define: ![alt text](https://latex.codecogs.com/gif.latex?T) - time it takes to calculate the Task, ![alt text](https://latex.codecogs.com/gif.latex?F(n,p,k)) - CDF of ![alt text](https://latex.codecogs.com/gif.latex?Binomial(n,p)), i.e. probability that at most ![alt text](https://latex.codecogs.com/gif.latex?k) out of ![alt text](https://latex.codecogs.com/gif.latex?n) succeed, with probability of single success ![alt text](https://latex.codecogs.com/gif.latex?p).
 
 Then probability to be dissapointed for the two above reasons is respectively:
 
@@ -108,7 +108,7 @@ Note that the number of lotteries taken within the "time-of-patience" is ![alt t
 
 These formulas yield an example estimation. Assume:
  - a Task requires ![alt text](https://latex.codecogs.com/gif.latex?T=\text{10&space;hours}) of Requestors CPU to compute
- - Provider expects to earn something overnight (![alt text](https://latex.codecogs.com/gif.latex?top_1=\text{12&space;hours}) 
+ - Provider expects to earn something overnight ![alt text](https://latex.codecogs.com/gif.latex?top_1=\text{12&space;hours}) 
  - get 90% of expected income over a week ![alt text](https://latex.codecogs.com/gif.latex?top_2=\text{84&space;hours}) (seven overnight sessions)
  - Provider's and Requestor's power is the same and about 40% of whole Tasks computing power.
  
