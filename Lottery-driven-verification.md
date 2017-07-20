@@ -209,7 +209,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
     
 2.  **Opportunistic P-Sybils**. See [here](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#Opportunistic-Sybils-of-P)
     
-3.  The lottery itself. For smaller Providers, probability of "no reward until bored" might be too high. For instance, `P(P1, after 10 tasks with 1 winning ticket among 1000 subtasks and being able to compute 1 subtask per task, gets zero reward) = 0.99`. That probability drops to still scary 0.37 after having participated in 1000 (!) tasks like so, which may take a year, assuming reasonably difficult subtasks.
+3.  The lottery itself. See [no reward till bored](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#No-reward-till-bored)
 
 4.  The claim that this protocol leaves an auditable trace of unjust rejections and cheating Providers is weak. It would need to rely on the Task's payload being available long-term. That would need to be taken care of by the just party, as proof of being just. That might be difficult
 
