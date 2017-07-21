@@ -43,10 +43,13 @@ probofdissappointment(12,12*7,1000,10,80,10)
 
     # adjust for yearly discount rate 1%, task lasting 10hours * (365*24)/10/0.01
     
+# relative gain from reducting cost (as multiples of F) when using R-Sybils
+((k, kstar, kT) -> (kT-1)/kT^2*sum([f(k, kstar, kT, d) * d for d in 0:kstar]))(100, 1, 10)
     
-# relative reduction of cost (as multiples of F) when using R-Sybils. K*=2
-((k, kT) -> f(k, 2, kT, 0) + f(k, 2, kT, 1) * ((kT-1)/kT + 1/kT^2) + f(k,2,kT,2)*((kT-2)/kT + 2/kT^2))(100, 10)
+    #obsolete:
+        # relative reduction of cost (as multiples of F) when using R-Sybils. K*=2
+        ((k, kT) -> f(k, 2, kT, 0) + f(k, 2, kT, 1) * ((kT-1)/kT + 1/kT^2) + f(k,2,kT,2)*((kT-2)/kT + 2/kT^2))(100, 10)
 
-# same for K*=1
-((k, kT) -> f(k, 1, kT, 0) + f(k, 1, kT, 1) * ((kT-1)/kT + 1/kT^2))
+        # same for K*=1
+        ((k, kT) -> f(k, 1, kT, 0) + f(k, 1, kT, 1) * ((kT-1)/kT + 1/kT^2))
  

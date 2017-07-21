@@ -57,7 +57,7 @@ P1 puts his Sybil identities P\* on a Task. P1 provides good results, P\* push e
     
 From a more general perspective, consider 2 strategies for P1: 
   - **"honest"** where P1 holds only one address ![alt text](https://latex.codecogs.com/gif.latex?K^*=1) and gets to calculate a Task
-  - **"cheating"** where P1 holds two addresses ![alt text](https://latex.codecogs.com/gif.latex?K^*=2) and gets to calculate a Task with one or two of these (assuming Providers are picked to the Task randomly: ![alt text](https://latex.codecogs.com/gif.latex?K^T) out of ![alt text](https://latex.codecogs.com/gif.latex?K) total applying.
+  - **"cheating"** where P1 holds two addresses ![alt text](https://latex.codecogs.com/gif.latex?K^*=2) and gets to calculate a Task with one or two of these (assuming Providers are picked to the Task randomly: ![alt text](https://latex.codecogs.com/gif.latex?K^T) out of ![alt text](https://latex.codecogs.com/gif.latex?K) total applying.)
   
 The gain from employing the "cheating" strategy compared to the "honest" one, for a single Task is (derivation skipped):
 
@@ -117,6 +117,25 @@ The above results take many general assumptions and cut some corners like: all T
 #### Opportunistic P-Sybils of R
 
 **Adding Sybil (Provider) addresses to a Task allows **Requestor** to be charged for computation less than what honest Providers expect**
+
+R can put some own P\*s on his task and have them _never calculate anything_, but commit to some fake hashes and grab the winning tickets, if P\*s get a lot of them. It may turn out, that all winning tickets go to P\*s (hence back to R), and none to working Ps. Then R resubmits the part of the Task which was not calculated as a new Task2. This strategy has better expected return for R, if only Task submitting and Sybil identities are relatively cheap.
+
+Consider 2 strategies for R: 
+  - **"honest"** where R holds no Provider-addresses ![alt text](https://latex.codecogs.com/gif.latex?K^*=0)
+  - **"cheating"** where R holds one Provider-address ![alt text](https://latex.codecogs.com/gif.latex?K^*>=1) and may get to calculate R's own Task with some of them (assuming Providers are picked to the Task randomly: ![alt text](https://latex.codecogs.com/gif.latex?K^T) out of ![alt text](https://latex.codecogs.com/gif.latex?K) total applying.)
+  
+The gain from employing the "cheating" strategy compared to the "honest" one, for a single Task is (derivation skipped):
+
+![alt text](https://latex.codecogs.com/gif.latex?E(\text{cost}|\text{honest})-E(\text{cost}|\text{cheating})=)
+
+![alt text](https://latex.codecogs.com/gif.latex?=F\cdot\frac{K_T-1}{K_T^2}\cdot\sum_{d=0}^{K^*}dP(\text{d&space;Sybil&space;Providers&space;got&space;in}))
+
+(**TODO**: simplify the above formula, it seems it is proportional to ![alt text](https://latex.codecogs.com/gif.latex?K^*))
+
+Suppose Requestor has ![alt text](https://latex.codecogs.com/gif.latex?K^*) Sybil Provider address out of 100 Providers applying (![alt text](https://latex.codecogs.com/gif.latex?K=100)) for a 10-Provider (![alt text](https://latex.codecogs.com/gif.latex?K_T=10)) Task.
+Then his expected gain is $0.009 for a Task with fee equal $1, for every Sybil Provider address R has.
+
+This in fact is huge savings opportunity for R and ought to be addressed!
 
 #### Wasted effort for pricing
 

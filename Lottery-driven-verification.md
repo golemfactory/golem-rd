@@ -199,7 +199,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
     
 ### Known problems
 
-1.  R can put some own P\*s on his task and have them _never calculate anything_, but commit to some fake hashes and grab the winning tickets, if P\*s get a lot of them. It may turn out, that all winning tickets go to P\*s (hence back to R), and none to working Ps. Then R resubmits the part of the Task which was not calculated as a new Task2. This strategy has better expected return for R, if only Task submitting and Sybil identities are relatively cheap.
+1.  **Opportunistic P-Sybils of R**. See [here](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#opportunistic-p-sybils-of-r)
     
     - mitigation1: 2-tiered lottery, Requestor knows only tier-1 (verified tasks). From within tier-1 tickets, paying tickets are drawn without R's knowledge
     - mitigation2: winning-tickets become known to R and verification starts after all (50%? 75%?) tasks are completed. Subtask assignment must be adapted to performance Ps committed to, i.e. If P1 calculated 20% of subtasks, P1 gets 20% of remaining work after winning-tickets have become known.
@@ -207,9 +207,9 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
       - only "100%" option makes the strategy non-winning entirely, "50%" gives small relief
       - this complicates flow greatly
     
-2.  **Opportunistic P-Sybils**. See [here](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#Opportunistic-Sybils-of-P)
+2.  **Opportunistic P-Sybils**. See [here](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#opportunistic-sybils-of-p)
     
-3.  The lottery itself. See [no reward till bored](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#No-reward-till-bored)
+3.  The lottery itself. See [no reward till bored](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#no-reward-till-bored)
 
 4.  The claim that this protocol leaves an auditable trace of unjust rejections and cheating Providers is weak. It would need to rely on the Task's payload being available long-term. That would need to be taken care of by the just party, as proof of being just. That might be difficult
 
