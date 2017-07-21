@@ -127,15 +127,15 @@ R can put some own P\*s on his task and have them _never calculate anything_, bu
 
 Consider 2 strategies for R: 
   - **"honest"** where R holds no Provider-addresses ![alt text](https://latex.codecogs.com/gif.latex?K^*=0)
-  - **"cheating"** where R holds one Provider-address ![alt text](https://latex.codecogs.com/gif.latex?K^*>=1) and may get to calculate R's own Task with some of them (assuming Providers are picked to the Task randomly: ![alt text](https://latex.codecogs.com/gif.latex?K^T) out of ![alt text](https://latex.codecogs.com/gif.latex?K) total applying.)
+  - **"cheating"** where R holds Provider-addresses ![alt text](https://latex.codecogs.com/gif.latex?K^*>=1) and may get to calculate R's own Task with some of them (assuming Providers are picked to the Task randomly: ![alt text](https://latex.codecogs.com/gif.latex?K^T) out of ![alt text](https://latex.codecogs.com/gif.latex?K) total applying.)
   
 The gain from employing the "cheating" strategy compared to the "honest" one, for a single Task is (derivation skipped):
 
 ![alt text](https://latex.codecogs.com/gif.latex?E(\text{cost}|\text{honest})-E(\text{cost}|\text{cheating})=)
 
-![alt text](https://latex.codecogs.com/gif.latex?=F\cdot\frac{K_T-1}{K_T^2}\cdot\sum_{d=0}^{K^*}dP(\text{d&space;Sybil&space;Providers&space;got&space;in}))
+![alt text](https://latex.codecogs.com/gif.latex?=F\cdot\frac{K_T-1}{K_T^2}\cdot\sum_{d=0}^{K^*}dP(\text{exactly&space;d&space;Sybil&space;Providers&space;got&space;in}))
 
-(**TODO**: simplify the above formula, it seems it is proportional to ![alt text](https://latex.codecogs.com/gif.latex?K^*))
+(**TODO**: simplify the above formula, it seems it is linear in ![alt text](https://latex.codecogs.com/gif.latex?K^*))
 
 Suppose Requestor has ![alt text](https://latex.codecogs.com/gif.latex?K^*) Sybil Provider address out of 100 Providers applying (![alt text](https://latex.codecogs.com/gif.latex?K=100)) for a 10-Provider (![alt text](https://latex.codecogs.com/gif.latex?K_T=10)) Task.
 Then his expected gain is $0.009 for a Task with fee equal $1, for every Sybil Provider address R has.
