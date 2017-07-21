@@ -89,30 +89,35 @@ details TODO
 #### No reward till bored
 
 The risks consist in the possibility of Provider never winning any lottery before some critical "trial time" passes.
-Although, the expected value of income checks out and is "fair", we still worry about the possibility of actual earnings from being the Provider to be dissapointing.
+Although, the expected value of income checks out and is "fair", we still worry about the possibility of actual earnings of a Provider to be dissapointing.
 Let's model this dissapointment using the two critical values:
 
 ![alt text](https://latex.codecogs.com/gif.latex?top_1) - ("time-of-patience") - if no income for Provider within that time, Provider is dissapointed with Golem.
 
 ![alt text](https://latex.codecogs.com/gif.latex?top_2) - if less than 90% expected income for Provider within that time, Provider is dissapointed with Golem
 
-Additionally define: ![alt text](https://latex.codecogs.com/gif.latex?T) - time it takes to calculate the Task, ![alt text](https://latex.codecogs.com/gif.latex?F(n, p, k) - CDF of ![alt text](https://latex.codecogs.com/gif.latex?Binomial(n, p), i.e. probability that at most ![alt text](https://latex.codecogs.com/gif.latex?k) out of ![alt text](https://latex.codecogs.com/gif.latex?n) succeed, with probability of single success ![alt text](https://latex.codecogs.com/gif.latex?p).
+Additionally define: ![alt text](https://latex.codecogs.com/gif.latex?T) - time it takes to calculate the Task, ![alt text](https://latex.codecogs.com/gif.latex?F(n,p,k)) - CDF of ![alt text](https://latex.codecogs.com/gif.latex?Binomial(n,p)), i.e. probability that at most ![alt text](https://latex.codecogs.com/gif.latex?k) out of ![alt text](https://latex.codecogs.com/gif.latex?n) succeed, with probability of single success ![alt text](https://latex.codecogs.com/gif.latex?p).
 
 Then probability to be dissapointed for the two above reasons is respectively:
 
-![alt text](https://latex.codecogs.com/gif.latex?P_1=F\left(\frac{top_1\cdot&space;T_{pow}}{T\cdot&space;R_{pow}},\frac{P_{pow}}{T_{pow}}, 0\right))
+![alt text](https://latex.codecogs.com/gif.latex?P_1=F\left(\frac{top_1\cdot&space;T_{pow}}{T\cdot&space;R_{pow}},\frac{P_{pow}}{T_{pow}},0\right))
 
-![alt text](https://latex.codecogs.com/gif.latex?P_2=F\left(\frac{top_2\cdot&space;T_{pow}}{T\cdot&space;R_{pow}},\frac{P_{pow}}{T_{pow}}, 0.9\cdot&space;\frac{top_2\cdot&space;P_{pow}}{T\cdot&space;R_{pow}}\right))
+![alt text](https://latex.codecogs.com/gif.latex?P_2=F\left(\frac{top_2\cdot&space;T_{pow}}{T\cdot&space;R_{pow}},\frac{P_{pow}}{T_{pow}},0.9\cdot&space;\frac{top_2\cdot&space;P_{pow}}{T\cdot&space;R_{pow}}\right))
 
 Note that the number of lotteries taken within the "time-of-patience" is ![alt text](https://latex.codecogs.com/gif.latex?\frac{top\cdot&space;T_{pow}}{T\cdot&space;R_{pow}}), while probability of winnig a lottery for a Task is proportional to the proportion of computing power of Provider within the pool of computing power ammassed for a single Task: ![alt text](https://latex.codecogs.com/gif.latex?\frac{P_{pow}}{T_{pow}}).
 
-These formulas yield an example estimation, when a Task requires ![alt text](https://latex.codecogs.com/gif.latex?T=\text{10&space;hours}) of Requestors CPU to compute, Provider expects to have earned something overnight (![alt text](https://latex.codecogs.com/gif.latex?top_1=\text{12&space;hours}) and to have got 90% of expected income over a week ![alt text](https://latex.codecogs.com/gif.latex?top_2=\text{84&space;hours}) (seven overnight sessions) and Provider's and Requestor's power is the same and about 40% of whole Tasks computing power.
+These formulas yield an example estimation. Assume:
+ - a Task requires ![alt text](https://latex.codecogs.com/gif.latex?T=\text{10&space;hours}) of Requestors CPU to compute
+ - Provider expects to earn something overnight ![alt text](https://latex.codecogs.com/gif.latex?top_1=\text{12&space;hours}) 
+ - get 90% of expected income over a week ![alt text](https://latex.codecogs.com/gif.latex?top_2=\text{84&space;hours}) (seven overnight sessions)
+ - Provider's and Requestor's power is the same and about 40% of whole Tasks computing power.
+ 
 These numbers arise when one considers getting a 10 hour task done in 4 hours and Requestor having a comparable machine to Provider's.
 (There is an assumption made that we worry most about early adopters).
 
 Under such assumptions ![alt text](https://latex.codecogs.com/gif.latex?P_1\approx0.216) and ![alt text](https://latex.codecogs.com/gif.latex?P_2\approx0.350), which are quite worrying.
 
-The above results take many general assumptions and cut some corners like: all Tasks are equal, all Tasks complete, very fine division into subtasks, single winning ticket per lottery, no failures of protocol etc.
+The above results take many general assumptions and cut some corners like: all Tasks are equal, all Tasks complete, very fine division into subtasks, single winning ticket per Task etc.
 
 #### Opportunistic P-Sybils of R
 
