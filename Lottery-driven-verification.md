@@ -43,7 +43,7 @@ This is the general flow of the happy path, see below for handling of unhappy pa
 
 1. R (Requestor) publishes task, along with commitment to division into subtasks, initial price and number of winning tickets
 2. R provides `sha3(lottery_secret)` and provides timelocked GNT for payout+cushion
-3. Ps (Providers) list is compiled
+3. Ps (Providers) list is compiled, this needs to be a random selection of ![alt text](https://latex.codecogs.com/gif.latex?K_T) out of ![alt text](https://latex.codecogs.com/gif.latex?K) applying
 4. `lottery_seed = sha3(lottery_secret | future_blockhash)`, determines lottery winners. When future block is mined, Requestor knows the winning tickets
 5. `assignment_seed = sha3(sha3(lottery_secret) | future_blockhash)` determines assignment of subtasks
 7. R calculates results of S1, S2, ... lottery winning subtasks
@@ -197,6 +197,10 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
 
     A: that undermines a lot of verification mechanisms considered. However R doing the only redundant work is actually _helping_ in non-deterministic setting. With some modifications, the protocol could allow R to check a subtask's result differently than by-hash (by some metric of plain-text image), as he has the final say on correct-incorrect.
     
+19. Q: Why does the selection of providers chosen for Task (out of those applying) need to be random
+
+    A: To increase the expenses required for Sybil attacks (Opportunistic P-Sybils of R, Opportunistic P-Sybils, price pumping)
+    
 ### Known problems
 
 1.  **Opportunistic P-Sybils of R**. See [here](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#opportunistic-p-sybils-of-r)
@@ -213,7 +217,7 @@ Note that the pool of reshuffled subtasks includes rejected tasks, either on gro
 
 4.  The claim that this protocol leaves an auditable trace of unjust rejections and cheating Providers is weak. It would need to rely on the Task's payload being available long-term. That would need to be taken care of by the just party, as proof of being just. That might be difficult
 
-
+5.  The price bumping might lead to price pumping. See [Sybil price pumping](https://github.com/imapp-pl/golem_rd/blob/wip/lottery_driven/LDM-evaluation.md#sybil-price-pumping)
     
     
     

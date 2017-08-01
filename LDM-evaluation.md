@@ -84,6 +84,12 @@ details TODO
 
 **Requestor risks having undetected incorrect results introduced by **malicious** Provider (griefing)**
 
+#### Sybil price pumping
+
+Provider might put his Sybil addresses on a Task to only produce irrationally high difficulty/pricing of Task
+There is no way of discriminating between accurate pricing and "void", pumping offers.
+Requestor might be tricked into paying a suboptimal price using this
+
 ### Risks for Providers:
 
 #### No reward till bored
