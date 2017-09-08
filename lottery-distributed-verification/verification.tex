@@ -42,6 +42,8 @@ Precisely, we assume that the true verdict is the one the majority of peers has 
 This algorithm has an inherent risk of peers deciding not to reveal the decryption keys at some point in time. 
 This will not be addressed since the blockchain-fee-optimal method doesn't suffer from this problem.
 
+Notice that this approach gives us a great flexibility in the terms of computational redundancy. This is better than verification by replication whenever $N * n < k$.
+
 \section{Probabilistic analysis}
 Let $X$ be a random variable outputting the number of nodes who voted that the computation was carried out correctly.
 Let's consider two scenarios. 
@@ -54,7 +56,7 @@ Assume the worst case: all dishonest peers are colluding. This means that
 with $\lim_{n\to\infty} c^n = 0$ it's just the matter of adjusting the parameter $n$ so that the dishonest peers cannot overthrow the verdict being in minority.
 
 \subsection{Good provider penalized by colluding dishonest peers}
-Then all $pN$ peers provide the good
+In this case all $pN$ peers provide the truthful verdict, so the requirement $p > \frac{1}{2}$ is enough.
 
 \section{Game-theory analysis} 
 TODO (why it pays to really compute it)
