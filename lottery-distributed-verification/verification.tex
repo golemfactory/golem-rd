@@ -1,0 +1,67 @@
+\title{Lottery-based decentralized verification for}
+\author{Marcin Mielniczuk}
+\documentclass[12pt]{article}
+
+\usepackage{amsfonts}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We first present a distributed blockchain-based algorithm for computation verification. 
+First, we'll present the general idea, ignoring the costs of blockchain message insertion. 
+Later, we'll show how to gather the results in an efficient way.
+\end{abstract}
+
+\section{Assumptions}
+
+We assume that the task is easily distributable, 
+i.e. that it can be easily divided into multiple subtasks, 
+each of them to be computed separately.
+
+Additionally, assume the following:
+\begin{enumerate}
+	\item The provider outputs the percentage $c$ of correct results (e.g. random garbage).
+	\item The percentage of good (honest) nodes in the network equals $p$, $p > \frac{1}{2}$.
+	\item The whole task is constituted of $k$ subtasks
+\end{enumerate}
+
+\section{Algorithm}
+Choose $N$ nodes from the network at random and assign exactly $n$ subtasks to each.
+The task of each node is to recalculate all of the subtasks. Gathering the results 
+consists of two phases
+
+\begin{enumerate}
+	\item Each node publishes an encrypted and signed verdict about the correctness of all $n$ subtasks (e.g. $1$ when all $n$ subtasks were correct, $0$ when there was any incorrect subtask)
+	\item Each node publishes the decryption key for his own message
+\end{enumerate}
+
+After all nodes have published their decryption keys (or a timeout was reached), the results are gathered and the final verdict announced (or just calculated).
+Precisely, we assume that the true verdict is the one the majority of peers has voted for.
+
+This algorithm has an inherent risk of peers deciding not to reveal the decryption keys at some point in time. 
+This will not be addressed since the blockchain-fee-optimal method doesn't suffer from this problem.
+
+\section{Probabilistic analysis}
+Let $X$ be a random variable outputting the number of nodes who voted that the computation was carried out correctly.
+Let's consider two scenarios. 
+\subsection{Bad provider trying to get away with an incorrect computation}
+With sufficiently large number of verifying nodes $N$, we can expect approximately $pN$ honest and $(1-p)N$ dishonest nodes. 
+Assume the worst case: all dishonest peers are colluding. This means that 
+\begin{equation}
+\frac{\mathbb{E}X}{N} = (1-p) + pc^n
+\end{equation}
+with $\lim_{n\to\infty} c^n = 0$ it's just the matter of adjusting the parameter $n$ so that the dishonest peers cannot overthrow the verdict being in minority.
+
+\subsection{Good provider penalized by colluding dishonest peers}
+Then all $pN$ peers provide the good
+
+\section{Game-theory analysis} 
+TODO (why it pays to really compute it)
+
+\section{Cheap verdict collection}
+TODO
+\section{Presentation on concrete parameter values}
+TODO
+
+\end{document}
