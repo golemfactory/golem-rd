@@ -4,6 +4,9 @@ import QtQuick.Controls 1.4
 Row {
     property string desc
     property alias value: slider.value
+    property alias minValue: slider.minimumValue
+    property alias maxValue: slider.maximumValue
+    property alias step: slider.stepSize
 
     width: parent.width
     Label {
