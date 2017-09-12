@@ -3,6 +3,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{amsfonts}
+\usepackage{amsmath}
 
 \begin{document}
 \maketitle
@@ -78,8 +79,20 @@ replication. Precisely, if two peers decide to cooperate, compute the result onc
 winning strategy is to properly recompute the chunk and give a false result to 
 the other one. 
 
-TODO what is the expected number of shared subtasks?
-TODO why is it a winning strategy to compute everything?
+\textbf{TODO} What is the expected number of subtasks to be shared between two nodes? 
+It should be small if $N$ is large, but something more precise would be nice.
+
+Now note, that due to the fact that whenever the parameters as such, that 
+the expected result is the true one, the joining node's best decision is
+either to calculate the subtask honestly or give a random verdict,
+depending on the incentives.
+
+This can be alleviated by requiring putting the subtask result on the blockchain
+instead of the sheer verdict. In such case, the node can either publish the 
+real result or garbage. Since the expected total verdict is equal to the true 
+verdict, the best choice is to honestly calculate the subtasks.
+
+\textbf{TODO} more detailed analysis, this is too much of waving the arms
 
 \section{Cheap verdict collection}
 The simple \textit{put it on blockchain} method is very inefficient when it 
@@ -106,13 +119,19 @@ raise an objection and announce that he is the next one to gather the results
 from any node possibly ignored by the previous collectors.
 
 This way, every node will eventually submit his results onto the blockchain.
+What is the expected number of writes onto the blockchain, $\mathbb{E}W$? That's easy!
 
-TODO expected value of number of blockchain writes as a function of 
-$p, N$
+\begin{multline}
+\mathbb{E}W = 1 \cdot p + 2 \cdot p (1-p) + 3 \cdot p (1-p)^2 + \dots = \sum_{n=1}^{\infty} p (1-p)^{n-1} n = \\
+p \sum_{n=1}^{\infty} (1-p)^{n-1} n = -p \sum_{n=1}^{\infty} \left((1-p)^n\right)' = -p \left( \sum_{n=1}^{\infty}(1-p)^n\right)' = \\
+-p \left(\frac{1-p}{p}\right)' = -p \frac{-1}{p^2} = \frac{1}{p}
+\end{multline}
 \section{Possible attacks}
 \subsection{Sybil attack}
+This is one more place where a Sybil attack poses a major threat, due to the sheer
+importance of the parameter $p$.
  
 \section{Presentation on concrete parameter values}
-TODO
+Run \texttt{qmlscene visualization.qml} in the \texttt{visualization} subfolder.
 
 \end{document}

@@ -14,12 +14,6 @@ ApplicationWindow {
             desc: "Fraction of honest nodes (p)"
         }
         Parameter {
-            desc: "Number of nodes (N)"
-            step: 1
-            minValue: 1
-            maxValue: 100000
-        }
-        Parameter {
             id: n
             desc: "Number of subtasks per node (n)"
             step: 1
