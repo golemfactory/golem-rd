@@ -3,6 +3,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{amsfonts}
+\usepackage{amsmath}
 
 \begin{document}
 \maketitle
@@ -42,7 +43,7 @@ Precisely, we assume that the true verdict is the one the majority of peers has 
 This algorithm has an inherent risk of peers deciding not to reveal the decryption keys at some point in time. 
 This will not be addressed since the blockchain-fee-optimal method doesn't suffer from this problem.
 
-Notice that this approach gives us a great flexibility in the terms of computational redundancy. This is better than verification by replication whenever $N * n < k$.
+Notice that this approach gives us a great flexibility in the terms of computational redundancy. This is better than verification by replication whenever $N \cdot n < k$.
 
 \section{Probabilistic analysis}
 Let $X$ be a random variable outputting the number of nodes who voted that the computation was carried out correctly.
@@ -58,12 +59,79 @@ with $\lim_{n\to\infty} c^n = 0$ it's just the matter of adjusting the parameter
 \subsection{Good provider penalized by colluding dishonest peers}
 In this case all $pN$ peers provide the truthful verdict, so the requirement $p > \frac{1}{2}$ is enough.
 
-\section{Game-theory analysis} 
-TODO (why it pays to really compute it)
+\section{Game-theoretical analysis} 
+Peers need to have a financial incentive to participate in the verification process.
+This can be solved very easily, by paying the participating peer a reward proportional
+to the fraction of the subtask computed, i.e. $\frac{n}{k} P$, where $P$ is the price
+to be earned for computing the whole task. Only peers whose result is consistent with
+the majority vote (i.e. believed to be true) receive this reward.
+
+This imposes the risk of peers colluding, whose alleviation is not much more difficult,
+though. Instead of rewarding only the peers with a fixed amount of GNT, we set a pool
+of $\frac{N \cdot n}{k} P$, distributed equally among the peers which are believed to have
+calculated correctly. If $p = 0$, i.e. all peers are honest, this is equivalent to 
+the previous reward system. 
+
+The new system has this interesting property that it discourages collusion on a
+game-theoretic background, just as proposed in the solution for verification by
+replication. Precisely, if two peers decide to cooperate, compute the result once
+(by a single party) and share the result with the other, the computing party's 
+winning strategy is to properly recompute the chunk and give a false result to 
+the other one. 
+
+\textbf{TODO} What is the expected number of subtasks to be shared between two nodes? 
+It should be small if $N$ is large, but something more precise would be nice.
+
+Now note, that due to the fact that whenever the parameters as such, that 
+the expected result is the true one, the joining node's best decision is
+either to calculate the subtask honestly or give a random verdict,
+depending on the incentives.
+
+This can be alleviated by requiring putting the subtask result on the blockchain
+instead of the sheer verdict. In such case, the node can either publish the 
+real result or garbage. Since the expected total verdict is equal to the true 
+verdict, the best choice is to honestly calculate the subtasks.
+
+\textbf{TODO} more detailed analysis, this is too much of waving the arms
 
 \section{Cheap verdict collection}
-TODO
+The simple \textit{put it on blockchain} method is very inefficient when it 
+comes to the Ethereum transaction fees. The number of blockchain writes
+can be easily minimized using the following protocol:
+
+The gathering of results consists of two phases, as previously. Instead of 
+everyone putting his verdict on his own, a random node collects the results 
+from the whole network (this can be a problem with a very large number, where
+several nodes could be used instead).
+
+All verdicts are, as previously encrypted and signed (in this order!). This
+means that the verdict of any node cannot be tampered with - if it's present
+in the report, it's exactly how the node voted. Thus, the only attack that
+can be carried out in this model is not to include the verdicts from a
+particular node in the voting summary, which is more likely in the second
+phase, when the collector can decrypt the votes prior to submitting them 
+onto the blockchain and omit some of them to malform the voting results.
+
+This can be alleviated by allowing an \textit{objection} on the blockchain.
+Precisely, after a node puts the summary on the blockchain, there is a 
+timeout until these results become valid. Within this timeout any node can
+raise an objection and announce that he is the next one to gather the results
+from any node possibly ignored by the previous collectors.
+
+This way, every node will eventually submit his results onto the blockchain.
+What is the expected number of writes onto the blockchain, $\mathbb{E}W$? That's easy!
+
+\begin{multline}
+\mathbb{E}W = 1 \cdot p + 2 \cdot p (1-p) + 3 \cdot p (1-p)^2 + \dots = \sum_{n=1}^{\infty} p (1-p)^{n-1} n = \\
+p \sum_{n=1}^{\infty} (1-p)^{n-1} n = -p \sum_{n=1}^{\infty} \left((1-p)^n\right)' = -p \left( \sum_{n=1}^{\infty}(1-p)^n\right)' = \\
+-p \left(\frac{1-p}{p}\right)' = -p \frac{-1}{p^2} = \frac{1}{p}
+\end{multline}
+\section{Possible attacks}
+\subsection{Sybil attack}
+This is one more place where a Sybil attack poses a major threat, due to the sheer
+importance of the parameter $p$.
+ 
 \section{Presentation on concrete parameter values}
-TODO
+Run \texttt{qmlscene visualization.qml} in the \texttt{visualization} subfolder.
 
 \end{document}
